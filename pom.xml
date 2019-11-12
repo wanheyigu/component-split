@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cc</groupId>
-	<artifactId>balance-order</artifactId>
+	<artifactId>component-split</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>balance-order</name>
-	 <description>balance-order</description>
+	<name>component-split</name>
+	 <description>component-split</description>
   	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
