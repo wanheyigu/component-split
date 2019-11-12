@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.entity.Order" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="orderid" property="orderId" jdbcType="VARCHAR" />
+    <result column="ordertype" property="orderType" jdbcType="VARCHAR" />
+    <result column="cityid" property="cityId" jdbcType="VARCHAR" />
+    <result column="platformid" property="platformId" jdbcType="VARCHAR" />
+    <result column="platformdrderid" property="platformdrderid" jdbcType="VARCHAR" />
+    <result column="poiid" property="poiId" jdbcType="VARCHAR" />
+    <result column="senderaddress" property="senderAddress" jdbcType="VARCHAR" />
+    <result column="senderphone" property="senderPhone" jdbcType="VARCHAR" />
+    <result column="senderlng" property="senderLng" jdbcType="INTEGER" />
+    <result column="senderlat" property="senderLat" jdbcType="INTEGER" />
+    <result column="sendername" property="senderName" jdbcType="VARCHAR" />
+    <result column="receiveraddress" property="receiverAddress" jdbcType="VARCHAR" />
+    <result column="receiverphone" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="receiverlng" property="receiverLng" jdbcType="INTEGER" />
+    <result column="receiverlat" property="receiverLat" jdbcType="INTEGER" />
+    <result column="receivername" property="receiverName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="pkgprice" property="pkgPrice" jdbcType="DECIMAL" />
+    <result column="createby" property="createBy" jdbcType="VARCHAR" />
+    <result column="createtime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="updateby" property="updateBy" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="BaseColumnList" >
+    id, orderid, ordertype, cityid, platformid, platformdrderid, poiid, senderaddress, 
+    senderphone, senderlng, senderlat, sendername, receiveraddress, receiverphone, 
+    receiverlng, receiverlat, receivername, remark, pkgprice, createby, createtime, 
+    updateby, updatetime
+  </sql>
+  
+  <select id="shardSelectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="BaseColumnList" />
+    from TABLE
+    where orderid = #{orderId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="shardDeleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from TABLE
+    where orderid = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="shardInsert" parameterType="com.cc.entity.Order" >
+    insert into TABLE (id, orderid, ordertype, 
+      cityid, platformid, platformdrderid, 
+      poiid, senderaddress, senderphone, 
+      senderlng, senderlat, sendername, 
+      receiveraddress, receiverphone, receiverlng, 
+      receiverlat, receivername, remark, 
+      pkgprice, createby, createtime, 
+      updateby, updatetime)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=VARCHAR}, #{platformId,jdbcType=VARCHAR}, #{platformdrderid,jdbcType=VARCHAR}, 
+      #{poiId,jdbcType=VARCHAR}, #{senderAddress,jdbcType=VARCHAR}, #{senderPhone,jdbcType=VARCHAR}, 
+      #{senderLng,jdbcType=INTEGER}, #{senderLat,jdbcType=INTEGER}, #{senderName,jdbcType=VARCHAR}, 
+      #{receiverAddress,jdbcType=VARCHAR}, #{receiverPhone,jdbcType=VARCHAR}, #{receiverLng,jdbcType=INTEGER}, 
+      #{receiverLat,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{pkgPrice,jdbcType=DECIMAL}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+
+  <update id="shardUpdateByPrimaryKey" parameterType="com.cc.entity.Order" >
+    update TABLE
+    set orderid = #{orderId,jdbcType=VARCHAR},
+      ordertype = #{orderType,jdbcType=VARCHAR},
+      cityid = #{cityId,jdbcType=VARCHAR},
+      platformid = #{platformId,jdbcType=VARCHAR},
+      platformdrderid = #{platformdrderid,jdbcType=VARCHAR},
+      poiid = #{poiId,jdbcType=VARCHAR},
+      senderaddress = #{senderAddress,jdbcType=VARCHAR},
+      senderphone = #{senderPhone,jdbcType=VARCHAR},
+      senderlng = #{senderLng,jdbcType=INTEGER},
+      senderlat = #{senderLat,jdbcType=INTEGER},
+      sendername = #{senderName,jdbcType=VARCHAR},
+      receiveraddress = #{receiverAddress,jdbcType=VARCHAR},
+      receiverphone = #{receiverPhone,jdbcType=VARCHAR},
+      receiverlng = #{receiverLng,jdbcType=INTEGER},
+      receiverlat = #{receiverLat,jdbcType=INTEGER},
+      receivername = #{receiverName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      pkgprice = #{pkgPrice,jdbcType=DECIMAL},
+      createby = #{createBy,jdbcType=VARCHAR},
+      createtime = #{createTime,jdbcType=TIMESTAMP},
+      updateby = #{updateBy,jdbcType=VARCHAR},
+      updatetime = #{updateTime,jdbcType=TIMESTAMP}
+    where orderid = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>
